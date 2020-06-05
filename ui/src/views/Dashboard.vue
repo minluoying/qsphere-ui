@@ -81,7 +81,9 @@ export default {
   data () {
     return {
       projectBaseUrl: '/dashboard/d/qsphere-project/qsphere-project?orgId=1&kiosk&refresh=1m',
+      projectInitUrl: '/dashboard/d/qsphere-project/qsphere-project?orgId=1&theme=light&kiosk&refresh=1m',
       sprintBaseUrl: '/dashboard/d/qsphere-sprint/qsphere-sprint?orgId=1&kiosk&refresh=1m',
+      sprintInitUrl: '/dashboard/d/qsphere-sprint/qsphere-sprint?orgId=1&theme=light&kiosk&refresh=1m',
       url: '/dashboard/d/qsphere-project/qsphere-project?orgId=1&theme=light&kiosk&refresh=1m',
       theme: 'light',
       trackers: [],
@@ -107,7 +109,7 @@ export default {
     updateUrlForProject () {
       this.sprint.name = ''
       this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-PROJECT=' + this.project.name + '&from=' + this.startDate + '&to=now'
-      console.log(this.url)
+      console.log('Change URL to ' + this.url)
     },
     updateUrlForSprint () {
       for (var s in this.sprints) {
@@ -122,11 +124,9 @@ export default {
         .then((response) => {
           console.log(response)
           this.startDate = response.data.detail.start_time
-          console.log(this.startDate)
           this.endDate = response.data.detail.end_time
-          console.log(this.endDate)
           this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-PROJECT=' + response.data.detail.project_name + '&var-SPRINT=' + this.sprint.name + '&from=' + this.startDate * 1000 + '&to=' + this.endDate * 1000
-          console.log(this.url)
+          console.log('Change URL to ' + this.url)
         })
         .catch((error) => {
           this.$message.error(error)
@@ -165,6 +165,22 @@ export default {
     fullScreen () {
       var fullScreenUrl = this.url
       window.open(fullScreenUrl.replace(/theme=light/, 'theme=dark'))
+    }
+  },
+  watch: {
+    $route (to, from) {
+      if (to.path === '/overview') {
+        this.url = this.projectInitUrl
+        console.log('Change URL to ' + this.url)
+      }
+      if (to.path === '/project') {
+        this.url = this.projectInitUrl
+        console.log('Change URL to ' + this.url)
+      };
+      if (to.path === '/sprint') {
+        this.url = this.sprintInitUrl
+        console.log('Change URL to ' + this.url)
+      }
     }
   }
 }
