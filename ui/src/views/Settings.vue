@@ -1,23 +1,24 @@
 <template>
   <el-tabs
     type="border-card"
+    @tab-click="listTabData"
     style="height: 100%">
-    <el-tab-pane>
-      <span slot="label" @click="listTracker"><i class="el-icon-connection"></i> Tracker</span>
+    <el-tab-pane name='tracker'>
+      <span slot="label"><i class="el-icon-connection"></i> Tracker</span>
       <Tracker
         :trackerTableData="trackerTableData"
         :trackerTableLoading="trackerTableLoading"
         :listTracker="listTracker"/>
     </el-tab-pane>
-    <el-tab-pane>
-      <span slot="label" @click="listProject"><i class="el-icon-menu"></i> Project</span>
+    <el-tab-pane name='project'>
+      <span slot="label"><i class="el-icon-menu"></i> Project</span>
       <Project
         :projectTableData="projectTableData"
         :projectTableLoading="projectTableLoading"
         :listProject="listProject"/>
     </el-tab-pane>
-    <el-tab-pane>
-      <span slot="label" @click="listSprint"><i class="el-icon-s-grid"></i> Sprint</span>
+    <el-tab-pane name='sprint'>
+      <span slot="label"><i class="el-icon-s-grid"></i> Sprint</span>
       <Sprint
         :sprintTableData="sprintTableData"
         :sprintTableLoading="sprintTableLoading"
@@ -95,6 +96,18 @@ export default {
         .finally(() => {
           this.sprintTableLoading = false
         })
+    },
+    listTabData (tab, event) {
+      console.log(tab.name + event)
+      if (tab.name === 'tracker') {
+        this.listTracker()
+      };
+      if (tab.name === 'project') {
+        this.listProject()
+      };
+      if (tab.name === 'sprint') {
+        this.listSprint()
+      }
     }
   },
   mounted: function () {
