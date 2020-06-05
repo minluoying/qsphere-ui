@@ -1,6 +1,7 @@
 <template>
   <el-tabs
     type="border-card"
+    v-model="activeTab"
     @tab-click="listTabData"
     style="height: 100%">
     <el-tab-pane name='tracker'>
@@ -42,7 +43,8 @@ export default {
       projectTableData: [],
       projectTableLoading: false,
       sprintTableData: [],
-      sprintTableLoading: false
+      sprintTableLoading: false,
+      activeTab: 'tracker'
     }
   },
   components: {
@@ -101,11 +103,9 @@ export default {
       console.log(tab.name + event)
       if (tab.name === 'tracker') {
         this.listTracker()
-      };
-      if (tab.name === 'project') {
+      } else if (tab.name === 'project') {
         this.listProject()
-      };
-      if (tab.name === 'sprint') {
+      } else if (tab.name === 'sprint') {
         this.listSprint()
       }
     }

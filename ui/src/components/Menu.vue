@@ -1,7 +1,7 @@
 <template>
   <el-menu
     :router="true"
-    default-active="1"
+    :default-active="activeIndex"
     background-color="#EDEDED"
     text-color="#909399"
     active-text-color="#212529">
@@ -33,7 +33,8 @@ export default {
   data () {
     return {
       tabPosition: 'left',
-      portal: []
+      portal: [],
+      activeIndex: '1'
     }
   },
   methods: {
@@ -84,6 +85,14 @@ export default {
     }
   },
   mounted: function () {
+    console.log('Path is ' + window.location.pathname)
+    if (window.location.pathname === '/project') {
+      this.activeIndex = '2'
+    } else if (window.location.pathname === '/sprint') {
+      this.activeIndex = '3'
+    } else {
+      this.activeIndex = '1'
+    }
     this.generatePortal()
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <el-menu
     :router="true"
-    :default-active="activeIndex2"
+    :default-active="activeIndex"
     @select="handleSelect"
     mode="horizontal"
     background-color="#212529"
@@ -28,13 +28,20 @@
 export default {
   data () {
     return {
-      activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex: '1'
     }
   },
   methods: {
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
+    }
+  },
+  mounted: function () {
+    console.log('Path is ' + window.location.pathname)
+    if (window.location.pathname === '/settings') {
+      this.activeIndex = '2'
+    } else {
+      this.activeIndex = '1'
     }
   }
 }
