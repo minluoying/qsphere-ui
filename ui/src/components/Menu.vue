@@ -85,15 +85,19 @@ export default {
     }
   },
   mounted: function () {
-    console.log('Path is ' + window.location.pathname)
-    if (window.location.pathname === '/project') {
-      this.activeIndex = '2'
-    } else if (window.location.pathname === '/sprint') {
-      this.activeIndex = '3'
-    } else {
-      this.activeIndex = '1'
-    }
     this.generatePortal()
+  },
+  watch: {
+    $route (to, from) {
+      console.log('Change path to ' + to.path)
+      if (to.path === '/project') {
+        this.activeIndex = '2'
+      } else if (to.path === '/sprint') {
+        this.activeIndex = '3'
+      } else {
+        this.activeIndex = '1'
+      }
+    }
   }
 }
 </script>
