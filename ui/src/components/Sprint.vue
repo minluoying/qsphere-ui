@@ -290,7 +290,9 @@ export default {
   data () {
     return {
       content: `
-        Hello, Sprint
+        <h3>Sprint</h3>
+        Define sprint information<br>
+        Sprint name should be same at all platforms<br>
       `,
       dialogSprintVisible: false,
       labelPosition: 'left',

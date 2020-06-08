@@ -144,9 +144,9 @@ export default {
     return {
       dialogTrackerVisible: false,
       content: `
-        <h3>Tracker<h3>
-        This is Qsphere tracker help document<br/>
-        Only for you<br/>
+        <h3>Tracker</h3>
+        Config issue/case management platform<br>
+        Only support JIRA<br>
       `,
       labelPosition: 'left',
       trackerData: {

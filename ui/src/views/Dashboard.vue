@@ -54,13 +54,37 @@
         </el-select>
       </el-form-item>
       <el-form-item
-        style="align: right;">
-        <el-link
-          icon="el-icon-full-screen"
-          :underline="false"
-          style="font-size: 1.25em;"
-          @click="fullScreen">
-        </el-link>
+        v-if="$route.path === '/sprint'"
+        label="Requirement"
+        style="margin-left: 20px;">
+        <el-select
+          @focus="listRequirements"
+          v-model="req"
+          @change="updateUrlForSprint"
+          placeholder="Select Requirement">
+          <el-option
+            v-for="item in reqs"
+            :key="item"
+            :label="item"
+            :value="item">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item
+        style="margin-left: 20px;">
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Full Screen"
+          placement="right">
+          <el-link
+            icon="el-icon-full-screen"
+            :underline="false"
+            style="font-size: 1.25em;"
+            hover="adadedeik"
+            @click="fullScreen">
+          </el-link>
+        </el-tooltip>
       </el-form-item>
     </el-form>
     </el-row>
@@ -101,6 +125,8 @@ export default {
         id: '',
         name: ''
       },
+      reqs: [],
+      req: '',
       startDate: '',
       endDate: ''
     }
@@ -125,7 +151,7 @@ export default {
           console.log(response)
           this.startDate = response.data.detail.start_time
           this.endDate = response.data.detail.end_time
-          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-PROJECT=' + response.data.detail.project_name + '&var-SPRINT=' + this.sprint.name + '&from=' + this.startDate * 1000 + '&to=' + this.endDate * 1000
+          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-PROJECT=' + response.data.detail.project_name + '&var-SPRINT=' + this.sprint.name + '&var-REQUIREMENT=' + this.req + '&from=' + this.startDate * 1000 + '&to=' + this.endDate * 1000
           console.log('Change URL to ' + this.url)
         })
         .catch((error) => {
@@ -161,6 +187,20 @@ export default {
         .catch((error) => {
           this.$message.error(String(error))
         })
+    },
+    listRequirements () {
+      if (this.sprint.id) {
+        sprintSvc.getSprint(this.sprint.id)
+          .then((response) => {
+            console.log(response)
+            this.reqs = response.data.detail.requirements
+          })
+          .catch((error) => {
+            this.$message.error(String(error))
+          })
+      } else {
+        this.reqs = []
+      }
     },
     fullScreen () {
       var fullScreenUrl = this.url

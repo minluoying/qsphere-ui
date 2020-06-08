@@ -161,7 +161,9 @@ export default {
     return {
       dialogProjectVisible: false,
       content: `
-      Hello, Project
+        <h3>Project</h3>
+        Bind issue/case trackers<br>
+        Project name should be same at all platforms<br>
       `,
       labelPosition: 'left',
       issueTrackers: {},
