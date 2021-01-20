@@ -94,46 +94,44 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="Requirement">
-          <el-select
-            v-model="sprintData.requirements"
-            multiple
-            filterable
-            clearable
-            allow-create
-            default-first-option
-            placeholder="Define Requirements Tags"
-            style="width: 100%;">
-            <el-option
-              v-for="item in sprintData.requirements"
-              :key="item"
-              :label="item"
-              :value="item">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="RC">
-          <el-select
-            v-model="sprintData.rcs"
-            multiple
-            filterable
-            clearable
-            allow-create
-            default-first-option
-            @focus="listRC()"
-            placeholder="Define RC Tags"
-            style="width: 100%;">
-            <el-option
-              v-for="item in selection.rcs"
-              :key="item"
-              :label="item"
-              :value="item">
-            </el-option>
-          </el-select>
-        </el-form-item>
+        <br>
         <el-divider>Issue Configuration</el-divider>
-        <el-form-item label="Found Version">
-          <el-col :span="11">
+        <el-form-item label="Requirement">
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.requirementsField"
+              filterable
+              clearable
+              placeholder="Field"
+              style="width: 100%;">
+              <el-option
+                v-for="item in sprintData.requirementsField"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+            <el-col class="line" :span="1">-</el-col>
+          </el-col>
+          <el-col :span="19">
+            <el-select
+              v-model="sprintData.requirementsValue"
+              multiple
+              filterable
+              clearable
+              allow-create
+              placeholder="Value(s)"
+              style="width: 100%;">
+              <el-option
+                v-for="item in sprintData.requirementsValue"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+        </el-form-item>
+        <el-form-item label="Found In Version">
+          <el-col :span="4">
             <el-select
               v-model="sprintData.versionField"
               filterable
@@ -148,12 +146,13 @@
               </el-option>
             </el-select>
           </el-col>
-          <el-col class="line" :span="2"><br></el-col>
-          <el-col :span="11">
+          <el-col class="line" :span="1">-</el-col>
+          <el-col :span="19">
             <el-select
-              v-model="sprintData.versionField"
+              v-model="sprintData.versionValue"
               filterable
               clearable
+              allow-create
               placeholder="Value"
               style="width: 100%;">
               <el-option
@@ -165,117 +164,328 @@
             </el-select>
           </el-col>
         </el-form-item>
-        <el-form-item label="Type">
-          <el-select
-            v-model="sprintData.issue.types"
-            multiple
-            clearable
-            filterable
-            allow-create
-            default-first-option
-            @focus="listIssueType()"
-            placeholder="Select Issue Type"
-            style="width: 100%;">
-            <el-option
-              v-for="item in selection.issue_types"
-              :key="item.key"
-              :label="item.value"
-              :value="item.value">
-            </el-option>
-          </el-select>
+        <el-form-item label="Found In RC">
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.rcsField"
+              filterable
+              clearable
+              @focus="listRC()"
+              placeholder="Field"
+              style="width: 100%;">
+              <el-option
+                v-for="item in selection.rcsField"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col class="line" :span="1">-</el-col>
+          <el-col :span="19">
+            <el-select
+              v-model="sprintData.rcsValue"
+              multiple
+              filterable
+              clearable
+              allow-create
+              placeholder="Value(s)"
+              style="width: 100%;">
+              <el-option
+                v-for="item in sprintData.rcsValue"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="Issue Type">
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.issue.types"
+              clearable
+              filterable
+              @focus="listIssueType()"
+              placeholder="Field"
+              style="width: 100%;">
+              <el-option
+                v-for="item in selection.issue_types"
+                :key="item.key"
+                :label="item.value"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col class="line" :span="1">-</el-col>
+          <el-col :span="19">
+            <el-select
+              v-model="sprintData.issue.types"
+              multiple
+              clearable
+              filterable
+              allow-create
+              @focus="listIssueType()"
+              placeholder="Value(s)"
+              style="width: 100%;">
+              <el-option
+                v-for="item in selection.issue_types"
+                :key="item.key"
+                :label="item.value"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
         </el-form-item>
         <el-form-item label="Found Since">
-          <el-select
-            v-model="sprintData.issue.found_since"
-            multiple
-            clearable
-            filterable
-            allow-create
-            default-first-option
-            @focus="listIssueFoundSince()"
-            placeholder="Define Tags For Found Since"
-            style="width: 100%;">
-            <el-option
-              v-for="item in selection.issue_found_since"
-              :key="item"
-              :label="item"
-              :value="item">
-            </el-option>
-          </el-select>
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.issue.found_since"
+              clearable
+              filterable
+              @focus="listIssueFoundSince()"
+              placeholder="Field"
+              style="width: 100%;">
+              <el-option
+                v-for="item in selection.issue_found_since"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col class="line" :span="1">-</el-col>
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.issue.found_since"
+              multiple
+              clearable
+              filterable
+              allow-create
+              default-first-option
+              @focus="listIssueFoundSince()"
+              placeholder="NewFeature"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_found_since"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.issue.found_since"
+              multiple
+              clearable
+              filterable
+              allow-create
+              default-first-option
+              @focus="listIssueFoundSince()"
+              placeholder="Improve"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_found_since"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.issue.found_since"
+              multiple
+              clearable
+              filterable
+              allow-create
+              default-first-option
+              @focus="listIssueFoundSince()"
+              placeholder="Customer"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_found_since"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.issue.found_since"
+              multiple
+              clearable
+              filterable
+              allow-create
+              default-first-option
+              @focus="listIssueFoundSince()"
+              placeholder="QaMissed"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_found_since"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
         </el-form-item>
-        <el-form-item label="Category">
-          <el-select
-            v-model="sprintData.issue.categories"
-            multiple
-            clearable
-            filterable
-            allow-create
-            default-first-option
-            @focus="listIssueCategories()"
-            placeholder="Define Issue Category Tags"
-            style="width: 100%;">
-            <el-option
-              v-for="item in selection.issue_categories"
-              :key="item"
-              :label="item"
-              :value="item">
-            </el-option>
-          </el-select>
+        <el-form-item label="Issue Category">
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.issue.categories"
+              clearable
+              filterable
+              allow-create
+              default-first-option
+              @focus="listIssueCategories()"
+              placeholder="Field"
+              style="width: 100%;">
+              <el-option
+                v-for="item in selection.issue_categories"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col class="line" :span="1">-</el-col>
+          <el-col :span="5">
+            <el-select
+              v-model="sprintData.issue.categories"
+              multiple
+              clearable
+              filterable
+              allow-create
+              default-first-option
+              @focus="listIssueCategories()"
+              placeholder="NewFeature"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_categories"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="5">
+            <el-select
+              v-model="sprintData.issue.categories"
+              multiple
+              clearable
+              filterable
+              allow-create
+              default-first-option
+              @focus="listIssueCategories()"
+              placeholder="Regression"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_categories"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="5">
+            <el-select
+              v-model="sprintData.issue.categories"
+              multiple
+              clearable
+              filterable
+              allow-create
+              default-first-option
+              @focus="listIssueCategories()"
+              placeholder="Previous"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_categories"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
         </el-form-item>
-        <el-form-item label="Fixing">
-          <el-select
-            v-model="sprintData.issue.statuses.fixing"
-            multiple
-            filterable
-            clearable
-            allow-create
-            default-first-option
-            @focus="listIssueStatus()"
-            placeholder="Define Fixing Tags"
-            style="width: 100%;">
-            <el-option
-              v-for="item in selection.issue_statuses"
-              :key="item.key"
-              :label="item.value"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Fixed">
-          <el-select
-            v-model="sprintData.issue.statuses.fixed"
-            multiple
-            filterable
-            clearable
-            allow-create
-            default-first-option
-            placeholder="Define Fixed Tags"
-            style="width: 100%;">
-            <el-option
-              v-for="item in selection.issue_statuses"
-              :key="item.key"
-              :label="item.value"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Verified">
-          <el-select
-            v-model="sprintData.issue.statuses.verified"
-            multiple
-            filterable
-            clearable
-            allow-create
-            default-first-option
-            placeholder="Define Verified Tags"
-            style="width: 100%;">
-            <el-option
-              v-for="item in selection.issue_statuses"
-              :key="item.key"
-              :label="item.value"
-              :value="item.value">
-            </el-option>
-          </el-select>
+        <el-form-item label="Issue Status">
+          <el-col :span="4">
+            <el-select
+              v-model="sprintData.issue.statuses.fixing"
+              multiple
+              filterable
+              clearable
+              allow-create
+              default-first-option
+              @focus="listIssueStatus()"
+              placeholder="Field"
+              style="width: 100%;">
+              <el-option
+                v-for="item in selection.issue_statuses"
+                :key="item.key"
+                :label="item.value"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col class="line" :span="1">-</el-col>
+          <el-col :span="6">
+            <el-select
+              v-model="sprintData.issue.statuses.fixing"
+              multiple
+              filterable
+              clearable
+              allow-create
+              default-first-option
+              @focus="listIssueStatus()"
+              placeholder="Fixing"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_statuses"
+                :key="item.key"
+                :label="item.value"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="6">
+            <el-select
+              v-model="sprintData.issue.statuses.fixed"
+              multiple
+              filterable
+              clearable
+              allow-create
+              default-first-option
+              placeholder="Fixed"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_statuses"
+                :key="item.key"
+                :label="item.value"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="6">
+            <el-select
+              v-model="sprintData.issue.statuses.verified"
+              multiple
+              filterable
+              clearable
+              allow-create
+              default-first-option
+              placeholder="Verified"
+              style="width: 90%;">
+              <el-option
+                v-for="item in selection.issue_statuses"
+                :key="item.key"
+                :label="item.value"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
