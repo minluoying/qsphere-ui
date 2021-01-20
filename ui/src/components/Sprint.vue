@@ -65,7 +65,7 @@
         </el-table-column>
       </el-table>
     </el-row>
-    <el-dialog title="Sprint" :visible.sync="dialogSprintVisible" width="45%">
+    <el-dialog title="Sprint" :visible.sync="dialogSprintVisible" width="60%">
       <el-form
         :label-position="labelPosition"
         :border="true"
@@ -111,9 +111,9 @@
                 :value="item">
               </el-option>
             </el-select>
-            <el-col class="line" :span="1">-</el-col>
           </el-col>
-          <el-col :span="19">
+          <el-col class="line" :span="1">-</el-col>
+          <el-col :span="18">
             <el-select
               v-model="sprintData.requirementsValue"
               multiple
@@ -147,7 +147,7 @@
             </el-select>
           </el-col>
           <el-col class="line" :span="1">-</el-col>
-          <el-col :span="19">
+          <el-col :span="18">
             <el-select
               v-model="sprintData.versionValue"
               filterable
@@ -182,7 +182,7 @@
             </el-select>
           </el-col>
           <el-col class="line" :span="1">-</el-col>
-          <el-col :span="19">
+          <el-col :span="18">
             <el-select
               v-model="sprintData.rcsValue"
               multiple
@@ -218,7 +218,7 @@
             </el-select>
           </el-col>
           <el-col class="line" :span="1">-</el-col>
-          <el-col :span="19">
+          <el-col :span="18">
             <el-select
               v-model="sprintData.issue.types"
               multiple
@@ -255,7 +255,7 @@
             </el-select>
           </el-col>
           <el-col class="line" :span="1">-</el-col>
-          <el-col :span="4">
+          <el-col :span="5">
             <el-select
               v-model="sprintData.issue.found_since"
               multiple
@@ -265,7 +265,7 @@
               default-first-option
               @focus="listIssueFoundSince()"
               placeholder="NewFeature"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_found_since"
                 :key="item"
@@ -284,7 +284,7 @@
               default-first-option
               @focus="listIssueFoundSince()"
               placeholder="Improve"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_found_since"
                 :key="item"
@@ -303,7 +303,7 @@
               default-first-option
               @focus="listIssueFoundSince()"
               placeholder="Customer"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_found_since"
                 :key="item"
@@ -312,7 +312,7 @@
               </el-option>
             </el-select>
           </el-col>
-          <el-col :span="4">
+          <el-col :span="5">
             <el-select
               v-model="sprintData.issue.found_since"
               multiple
@@ -322,7 +322,7 @@
               default-first-option
               @focus="listIssueFoundSince()"
               placeholder="QaMissed"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_found_since"
                 :key="item"
@@ -352,7 +352,7 @@
             </el-select>
           </el-col>
           <el-col class="line" :span="1">-</el-col>
-          <el-col :span="5">
+          <el-col :span="6">
             <el-select
               v-model="sprintData.issue.categories"
               multiple
@@ -362,7 +362,7 @@
               default-first-option
               @focus="listIssueCategories()"
               placeholder="NewFeature"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_categories"
                 :key="item"
@@ -371,7 +371,7 @@
               </el-option>
             </el-select>
           </el-col>
-          <el-col :span="5">
+          <el-col :span="6">
             <el-select
               v-model="sprintData.issue.categories"
               multiple
@@ -381,7 +381,7 @@
               default-first-option
               @focus="listIssueCategories()"
               placeholder="Regression"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_categories"
                 :key="item"
@@ -390,7 +390,7 @@
               </el-option>
             </el-select>
           </el-col>
-          <el-col :span="5">
+          <el-col :span="6">
             <el-select
               v-model="sprintData.issue.categories"
               multiple
@@ -400,7 +400,7 @@
               default-first-option
               @focus="listIssueCategories()"
               placeholder="Previous"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_categories"
                 :key="item"
@@ -441,7 +441,7 @@
               default-first-option
               @focus="listIssueStatus()"
               placeholder="Fixing"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_statuses"
                 :key="item.key"
@@ -459,7 +459,7 @@
               allow-create
               default-first-option
               placeholder="Fixed"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_statuses"
                 :key="item.key"
@@ -477,7 +477,7 @@
               allow-create
               default-first-option
               placeholder="Verified"
-              style="width: 90%;">
+              style="width: 98%;">
               <el-option
                 v-for="item in selection.issue_statuses"
                 :key="item.key"
