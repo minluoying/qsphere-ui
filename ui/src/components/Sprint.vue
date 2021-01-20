@@ -30,7 +30,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="Status"
+          label="Active"
           width="100">
           <template slot-scope="scope">
             <el-tooltip :content="'Status is ' + scope.row.status">
@@ -65,7 +65,7 @@
         </el-table-column>
       </el-table>
     </el-row>
-    <el-dialog title="Sprint" :visible.sync="dialogSprintVisible" width="30%">
+    <el-dialog title="Sprint" :visible.sync="dialogSprintVisible" width="45%">
       <el-form
         :label-position="labelPosition"
         :border="true"
@@ -91,23 +91,6 @@
               :key="item.name"
               :label="item.name"
               :value="item.id">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="Version">
-          <el-select
-            v-model="sprintData.version"
-            filterable
-            clearable
-            allow-create
-            default-first-option
-            placeholder="Sprint Version Tag"
-            style="width: 100%;">
-            <el-option
-              v-for="item in sprintData.version"
-              :key="item"
-              :label="item"
-              :value="item">
             </el-option>
           </el-select>
         </el-form-item>
@@ -148,7 +131,40 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-divider>Issue</el-divider>
+        <el-divider>Issue Configuration</el-divider>
+        <el-form-item label="Found Version">
+          <el-col :span="11">
+            <el-select
+              v-model="sprintData.versionField"
+              filterable
+              clearable
+              placeholder="Field"
+              style="width: 100%;">
+              <el-option
+                v-for="item in sprintData.versionFiled"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+          <el-col class="line" :span="2"><br></el-col>
+          <el-col :span="11">
+            <el-select
+              v-model="sprintData.versionField"
+              filterable
+              clearable
+              placeholder="Value"
+              style="width: 100%;">
+              <el-option
+                v-for="item in sprintData.versionValue"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-form-item>
         <el-form-item label="Type">
           <el-select
             v-model="sprintData.issue.types"
@@ -295,7 +311,7 @@ export default {
         Sprint name should be same at all platforms<br>
       `,
       dialogSprintVisible: false,
-      labelPosition: 'left',
+      labelPosition: 'right',
       selection: {
         projects: [],
         rcs: [],

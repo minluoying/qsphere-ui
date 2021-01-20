@@ -21,7 +21,7 @@
         <el-table-column prop="tracker.case.name" label="Case Tracker" width=""></el-table-column>
         <el-table-column prop="project.case.key" label="Case Project" width=""></el-table-column>
         <el-table-column
-          label="Status"
+          label="Active"
           width="100">
           <template slot-scope="scope">
             <el-tooltip :content="'Status is ' + scope.row.status">
