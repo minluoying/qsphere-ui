@@ -12,7 +12,7 @@
           <router-view/>
         </el-main>
       </el-container>
-      <el-footer>
+      <el-footer height="45px">
         <Footer/>
       </el-footer>
     </el-container>
