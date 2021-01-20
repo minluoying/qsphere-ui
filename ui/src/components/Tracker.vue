@@ -26,7 +26,7 @@
         <el-table-column prop="info.host" label="Host" width=""></el-table-column>
         <el-table-column prop="info.account" label="Account" width="200"></el-table-column>
         <el-table-column
-          label="Status"
+          label="Active"
           width="100">
           <template slot-scope="scope">
             <el-tooltip :content="'Status is ' + scope.row.status">
