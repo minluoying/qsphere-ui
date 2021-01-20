@@ -154,7 +154,7 @@ export default {
         name: '',
         types: [{
           type: 'jira',
-          label: 'Jira'
+          label: 'Jira Software'
         }],
         jira: {
           host: '',
