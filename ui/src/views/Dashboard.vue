@@ -104,11 +104,11 @@ import sprintSvc from '@/services/sprintSvc'
 export default {
   data () {
     return {
-      projectBaseUrl: '/dashboard/d/qsphere-project/qsphere-project?orgId=1&kiosk&refresh=1m',
-      projectInitUrl: '/dashboard/d/qsphere-project/qsphere-project?orgId=1&theme=light&kiosk&refresh=1m',
-      sprintBaseUrl: '/dashboard/d/qsphere-sprint/qsphere-sprint?orgId=1&kiosk&refresh=1m',
-      sprintInitUrl: '/dashboard/d/qsphere-sprint/qsphere-sprint?orgId=1&theme=light&kiosk&refresh=1m',
-      url: '/dashboard/d/qsphere-project/qsphere-project?orgId=1&theme=light&kiosk&refresh=1m',
+      projectBaseUrl: '/board/d/qsphere-project/qsphere-project?orgId=1&kiosk&refresh=1m',
+      projectInitUrl: '/board/d/qsphere-project/qsphere-project?orgId=1&theme=light&kiosk&refresh=1m',
+      sprintBaseUrl: '/board/d/qsphere-sprint/qsphere-sprint?orgId=1&kiosk&refresh=1m',
+      sprintInitUrl: '/board/d/qsphere-sprint/qsphere-sprint?orgId=1&theme=light&kiosk&refresh=1m',
+      url: '/board/d/qsphere-project/qsphere-project?orgId=1&theme=light&kiosk&refresh=1m',
       theme: 'light',
       trackers: [],
       tracker: {
