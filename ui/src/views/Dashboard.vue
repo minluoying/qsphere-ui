@@ -145,8 +145,23 @@ export default {
     updateUrlForProject () {
       this.sprint.id = ''
       this.sprint.name = ''
-      this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&from=' + this.startDate + '&to=now'
-      console.log('Change URL to ' + this.url)
+      for (var p in this.projects) {
+        console.log(this.projects[p])
+        if (this.projects[p].name === this.project.name) {
+          this.project.id = this.project[p].id
+          break
+        }
+      }
+      console.log(this.project.id)
+      projectSvc.getProject(this.project.id)
+        .then((response) => {
+          console.log(response)
+          this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&from=' + this.startDate + '&to=now'
+          console.log('Change URL to ' + this.url)
+        })
+        .catch((error) => {
+          this.$message.error(error)
+        })
     },
     updateUrlForSprint () {
       for (var s in this.sprints) {
