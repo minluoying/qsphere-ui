@@ -25,14 +25,14 @@
         style="margin-left: 20px;">
         <el-select
           @focus="listProject"
-          v-model="project.name"
+          v-model="project.id"
           @change="updateUrlForProject"
           placeholder="Select Project">
           <el-option
             v-for="item in projects"
             :key="item.id"
             :label="item.name"
-            :value="item.name">
+            :value="item.id">
           </el-option>
         </el-select>
       </el-form-item>
@@ -42,14 +42,14 @@
         style="margin-left: 20px;">
         <el-select
           @focus="listSprint"
-          v-model="sprint.name"
+          v-model="sprint.id"
           @change="updateUrlForSprint"
           placeholder="Select Sprint">
           <el-option
             v-for="item in sprints"
             :key="item.id"
             :label="item.name"
-            :value="item.name">
+            :value="item.id">
           </el-option>
         </el-select>
       </el-form-item>
@@ -135,24 +135,25 @@ export default {
   },
   methods: {
     updateUrlForOverview () {
-      this.sprint.id = ''
-      this.sprint.name = ''
+      console.log('Origin URL: ' + this.url)
       this.project.id = ''
       this.project.name = ''
+      this.sprint.id = ''
+      this.sprint.name = ''
       this.url = this.overviewBaseUrl + '&from=' + this.startDate + '&to=now'
       console.log('Change URL to ' + this.url)
     },
     updateUrlForProject () {
       this.sprint.id = ''
       this.sprint.name = ''
-      for (var p in this.projects) {
-        console.log(this.projects[p])
-        if (this.projects[p].name === this.project.name) {
-          this.project.id = this.project[p].id
-          break
-        }
-      }
-      console.log(this.project.id)
+      // for (var p in this.projects) {
+      //   console.log(this.projects[p])
+      //   if (this.projects[p].name === this.project.name) {
+      //     this.project.id = this.project[p].id
+      //     break
+      //   }
+      // }
+      console.log('Origin URL: ' + this.url)
       projectSvc.getProject(this.project.id)
         .then((response) => {
           console.log(response)
@@ -164,14 +165,14 @@ export default {
         })
     },
     updateUrlForSprint () {
-      for (var s in this.sprints) {
-        console.log(this.sprints[s])
-        if (this.sprints[s].name === this.sprint.name) {
-          this.sprint.id = this.sprints[s].id
-          break
-        }
-      }
-      console.log(this.sprint.id)
+      // for (var s in this.sprints) {
+      //   console.log(this.sprints[s])
+      //   if (this.sprints[s].name === this.sprint.name) {
+      //     this.sprint.id = this.sprints[s].id
+      //     break
+      //   }
+      // }
+      console.log('Origin URL: ' + this.url)
       sprintSvc.getSprint(this.sprint.id)
         .then((response) => {
           console.log(response)
