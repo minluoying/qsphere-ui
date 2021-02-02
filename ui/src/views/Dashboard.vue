@@ -134,7 +134,7 @@ export default {
     }
   },
   methods: {
-    updateUrlForOverview() {
+    updateUrlForOverview () {
       this.sprint.id = ''
       this.sprint.name = ''
       this.project.id = ''
