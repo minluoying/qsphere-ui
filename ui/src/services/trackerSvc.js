@@ -3,7 +3,7 @@ import axios from 'axios'
 export default {
 
   listTracker () {
-    return axios.get('/api/tracker')
+    return axios.get('/api/trackers')
   },
 
   addTracker (trackerData) {

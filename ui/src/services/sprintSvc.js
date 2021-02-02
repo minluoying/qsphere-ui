@@ -3,7 +3,7 @@ import axios from 'axios'
 export default {
 
   listSprint () {
-    return axios.get('/api/sprint')
+    return axios.get('/api/sprints')
   },
 
   getSprint (sprintId) {

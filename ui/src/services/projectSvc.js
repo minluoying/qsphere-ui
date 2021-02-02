@@ -3,7 +3,7 @@ import axios from 'axios'
 export default {
 
   listProject () {
-    return axios.get('/api/project')
+    return axios.get('/api/projects')
   },
 
   addProject (projectData) {

@@ -104,11 +104,13 @@ import sprintSvc from '@/services/sprintSvc'
 export default {
   data () {
     return {
+      overviewBaseUrl: '/board/d/qsphere-overview/qsphere-overview?orgId=1&kiosk&refresh=1m',
+      overviewInitUrl: '/board/d/qsphere-overview/qsphere-overview?orgId=1&theme=light&kiosk&refresh=1m',
       projectBaseUrl: '/board/d/qsphere-project/qsphere-project?orgId=1&kiosk&refresh=1m',
       projectInitUrl: '/board/d/qsphere-project/qsphere-project?orgId=1&theme=light&kiosk&refresh=1m',
       sprintBaseUrl: '/board/d/qsphere-sprint/qsphere-sprint?orgId=1&kiosk&refresh=1m',
       sprintInitUrl: '/board/d/qsphere-sprint/qsphere-sprint?orgId=1&theme=light&kiosk&refresh=1m',
-      url: '/board/d/qsphere-project/qsphere-project?orgId=1&theme=light&kiosk&refresh=1m',
+      url: '/board/d/qsphere-overview/qsphere-overview?orgId=1&theme=light&kiosk&refresh=1m',
       theme: 'light',
       trackers: [],
       tracker: {
@@ -132,9 +134,18 @@ export default {
     }
   },
   methods: {
-    updateUrlForProject () {
+    updateUrlForOverview() {
+      this.sprint.id = ''
       this.sprint.name = ''
-      this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-PROJECT=' + this.project.name + '&from=' + this.startDate + '&to=now'
+      this.project.id = ''
+      this.project.name = ''
+      this.url = this.overviewBaseUrld
+      console.log('Change URL to ' + this.url)
+    },
+    updateUrlForProject () {
+      this.sprint.id = ''
+      this.sprint.name = ''
+      this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&from=' + this.startDate + '&to=now'
       console.log('Change URL to ' + this.url)
     },
     updateUrlForSprint () {
@@ -151,7 +162,7 @@ export default {
           console.log(response)
           this.startDate = response.data.detail.start_time
           this.endDate = response.data.detail.end_time
-          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-PROJECT=' + response.data.detail.project_name + '&var-SPRINT=' + this.sprint.name + '&var-REQUIREMENT=' + this.req + '&from=' + this.startDate * 1000 + '&to=' + this.endDate * 1000
+          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + response.data.detail.project_id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.startDate * 1000 + '&to=' + this.endDate * 1000
           console.log('Change URL to ' + this.url)
         })
         .catch((error) => {
@@ -210,7 +221,7 @@ export default {
   watch: {
     $route (to, from) {
       if (to.path === '/overview') {
-        this.url = this.projectInitUrl
+        this.url = this.overviewInitUrl
         console.log('Change URL to ' + this.url)
       }
       if (to.path === '/project') {
