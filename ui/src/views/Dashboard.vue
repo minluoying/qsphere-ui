@@ -139,7 +139,7 @@ export default {
       this.sprint.name = ''
       this.project.id = ''
       this.project.name = ''
-      this.url = this.overviewBaseUrld
+      this.url = this.overviewBaseUrl + '&from=' + this.startDate + '&to=now'
       console.log('Change URL to ' + this.url)
     },
     updateUrlForProject () {
