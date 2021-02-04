@@ -58,7 +58,7 @@
         label="Requirement"
         style="margin-left: 20px;">
         <el-select
-          @focus="listRequirements"
+          @focus="listRequirement"
           v-model="req"
           @change="updateUrlForSprint"
           placeholder="Select Requirement">
@@ -215,12 +215,12 @@ export default {
           this.$message.error(String(error))
         })
     },
-    listRequirements () {
+    listRequirement () {
       if (this.sprint.id) {
         sprintSvc.getSprint(this.sprint.id)
           .then((response) => {
             console.log(response)
-            this.reqs = response.data.detail.requirements
+            this.reqs = response.data.detail.issue_config.requirement.value
           })
           .catch((error) => {
             this.$message.error(String(error))
