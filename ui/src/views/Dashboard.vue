@@ -129,8 +129,8 @@ export default {
       },
       reqs: [],
       req: '',
-      startDate: '',
-      endDate: ''
+      from_time: '',
+      to_time: ''
     }
   },
   methods: {
@@ -140,12 +140,16 @@ export default {
       this.project.name = ''
       this.sprint.id = ''
       this.sprint.name = ''
-      this.url = this.overviewBaseUrl + '&from=' + this.startDate + '&to=now'
+      this.from_time = ''
+      this.to_time = 'now'
+      this.url = this.overviewBaseUrl + '&from=' + this.from_time + '&to=' + this.to_time
       console.log('Change URL to ' + this.url)
     },
     updateUrlForProject () {
       this.sprint.id = ''
       this.sprint.name = ''
+      this.from_time = ''
+      this.to_time = 'now'
       // for (var p in this.projects) {
       //   console.log(this.projects[p])
       //   if (this.projects[p].name === this.project.name) {
@@ -157,7 +161,7 @@ export default {
       projectSvc.getProject(this.project.id)
         .then((response) => {
           console.log(response)
-          this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&from=' + this.startDate + '&to=now'
+          this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&from=' + this.from_time + '&to=' + this.to_time
           console.log('Change URL to ' + this.url)
         })
         .catch((error) => {
@@ -176,9 +180,14 @@ export default {
       sprintSvc.getSprint(this.sprint.id)
         .then((response) => {
           console.log(response)
-          this.startDate = response.data.detail.start_time
-          this.endDate = response.data.detail.end_time
-          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + response.data.detail.project_id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.startDate * 1000 + '&to=' + this.endDate * 1000
+          this.from_time = response.data.detail.capture_history.start_time * 1000
+          if ( this.status == 'active' ) {
+            this.to_time = 'now'
+          }
+          else {
+            this.to_time = response.data.detail.capture_history.end_time * 1000
+          }
+          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + response.data.detail.project_id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.from_time + '&to=' + this.to_time
           console.log('Change URL to ' + this.url)
         })
         .catch((error) => {
