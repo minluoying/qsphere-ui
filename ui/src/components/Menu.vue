@@ -47,7 +47,7 @@ export default {
           for (i in trackers) {
             console.log(trackers[i].info.host)
             this.portal.push({
-              key: tracker[i].name,
+              key: trackers[i].name,
               value: trackers[i].info.host
             })
             // if (trackers[i].type === 'jira') {
