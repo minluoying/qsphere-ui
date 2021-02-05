@@ -142,7 +142,8 @@ export default {
       this.sprint.name = ''
       this.from_time = ''
       this.to_time = 'now'
-      this.url = this.overviewBaseUrl + '&from=' + this.from_time + '&to=' + this.to_time
+      // this.url = this.overviewBaseUrl + '&from=' + this.from_time + '&to=' + this.to_time
+      this.url = this.overviewBaseUrl + '&to=' + this.to_time
       console.log('Change URL to ' + this.url)
     },
     updateUrlForProject () {
@@ -161,7 +162,8 @@ export default {
       projectSvc.getProject(this.project.id)
         .then((response) => {
           console.log(response)
-          this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&from=' + this.from_time + '&to=' + this.to_time
+          // this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&from=' + this.from_time + '&to=' + this.to_time
+          this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&to=' + this.to_time
           console.log('Change URL to ' + this.url)
         })
         .catch((error) => {
@@ -181,10 +183,9 @@ export default {
         .then((response) => {
           console.log(response)
           this.from_time = response.data.detail.capture_history.start_time * 1000
-          if ( this.status == 'active' ) {
+          if (response.data.detail.status == 'active') {
             this.to_time = 'now'
-          }
-          else {
+          } else {
             this.to_time = response.data.detail.capture_history.end_time * 1000
           }
           this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + response.data.detail.project_id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.from_time + '&to=' + this.to_time
