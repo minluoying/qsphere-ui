@@ -141,16 +141,16 @@ export default {
       // this.sprint.id = ''
       // this.sprint.name = ''
       // this.from_time = ''
-      this.to_time = 'now'
+      // this.to_time = 'now'
       // this.url = this.overviewBaseUrl + '&from=' + this.from_time + '&to=' + this.to_time
-      this.url = this.overviewBaseUrl + '&to=' + this.to_time
+      this.url = this.overviewBaseUrl + '&to=inow' 
       console.log('Change URL to ' + this.url)
     },
     updateUrlForProject () {
       // this.sprint.id = ''
       // this.sprint.name = ''
       // this.from_time = ''
-      this.to_time = 'now'
+      // this.to_time = 'now'
       // for (var p in this.projects) {
       //   console.log(this.projects[p])
       //   if (this.projects[p].name === this.project.name) {
@@ -163,7 +163,7 @@ export default {
         .then((response) => {
           console.log(response)
           // this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&from=' + this.from_time + '&to=' + this.to_time
-          this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&to=' + this.to_time
+          this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&to=now'
           console.log('Change URL to ' + this.url)
         })
         .catch((error) => {
