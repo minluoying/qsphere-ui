@@ -143,7 +143,7 @@ export default {
       // this.from_time = ''
       // this.to_time = 'now'
       // this.url = this.overviewBaseUrl + '&from=' + this.from_time + '&to=' + this.to_time
-      this.url = this.overviewBaseUrl + '&to=inow' 
+      this.url = this.overviewBaseUrl + '&to=now'
       console.log('Change URL to ' + this.url)
     },
     updateUrlForProject () {

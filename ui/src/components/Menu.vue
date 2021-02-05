@@ -45,34 +45,39 @@ export default {
           var trackers = response.data.detail.results
           var i
           for (i in trackers) {
-            if (trackers[i].type === 'jira') {
-              console.log(trackers[i].info.host)
-              this.portal.push({
-                key: 'Jira',
-                value: trackers[i].info.host
-              })
-            }
-            if (trackers[i].type === 'bugzilla') {
-              console.log(trackers[i].info.host)
-              this.portal.push({
-                key: 'Bugzilla',
-                value: trackers[i].info.host
-              })
-            }
-            if (trackers[i].type === 'zentao') {
-              console.log(trackers[i].info.host)
-              this.portal.push({
-                key: 'Zentao',
-                value: trackers[i].info.host
-              })
-            }
-            if (trackers[i].type === 'testlink') {
-              console.log(trackers[i].info.host)
-              this.portal.push({
-                key: 'TestLink',
-                value: trackers[i].info.host
-              })
-            }
+            console.log(trackers[i].info.host)
+            this.portal.push({
+              key: tracker[i].name,
+              value: trackers[i].info.host
+            })
+            // if (trackers[i].type === 'jira') {
+            //   console.log(trackers[i].info.host)
+            //   this.portal.push({
+            //     key: tracker[i].name,
+            //     value: trackers[i].info.host
+            //   })
+            // }
+            // if (trackers[i].type === 'bugzilla') {
+            //   console.log(trackers[i].info.host)
+            //   this.portal.push({
+            //     key: 'Bugzilla',
+            //     value: trackers[i].info.host
+            //   })
+            // }
+            // if (trackers[i].type === 'zentao') {
+            //   console.log(trackers[i].info.host)
+            //   this.portal.push({
+            //     key: 'Zentao',
+            //     value: trackers[i].info.host
+            //   })
+            // }
+            // if (trackers[i].type === 'testlink') {
+            //   console.log(trackers[i].info.host)
+            //   this.portal.push({
+            //     key: 'TestLink',
+            //     value: trackers[i].info.host
+            //   })
+            // }
             console.log((this.portal))
           }
         })
