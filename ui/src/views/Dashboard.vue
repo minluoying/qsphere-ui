@@ -188,7 +188,8 @@ export default {
           } else {
             this.to_time = response.data.detail.capture_history.end_time * 1000
           }
-          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + response.data.detail.project_id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.from_time + '&to=' + this.to_time
+          this.project.id = response.data.detail.project_id
+          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.from_time + '&to=' + this.to_time
           console.log('Change URL to ' + this.url)
         })
         .catch((error) => {
@@ -251,7 +252,7 @@ export default {
         console.log('Change URL to ' + this.url)
       }
       if (to.path === '/project') {
-        if (this.project_id) {
+        if (this.project.id) {
           this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&to=now'
         } else {
           this.url = this.projectInitUrl
@@ -259,8 +260,8 @@ export default {
         console.log('Change URL to ' + this.url)
       };
       if (to.path === '/sprint') {
-        if (this.sprint_id) {
-          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + response.data.detail.project_id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.from_time + '&to=' + this.to_time
+        if (this.sprint.id) {
+          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.from_time + '&to=' + this.to_time
         } else {
           this.url = this.sprintInitUrl
         }
