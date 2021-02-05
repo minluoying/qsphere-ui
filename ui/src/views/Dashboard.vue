@@ -136,20 +136,20 @@ export default {
   methods: {
     updateUrlForOverview () {
       console.log('Origin URL: ' + this.url)
-      this.project.id = ''
-      this.project.name = ''
-      this.sprint.id = ''
-      this.sprint.name = ''
-      this.from_time = ''
+      // this.project.id = ''
+      // this.project.name = ''
+      // this.sprint.id = ''
+      // this.sprint.name = ''
+      // this.from_time = ''
       this.to_time = 'now'
       // this.url = this.overviewBaseUrl + '&from=' + this.from_time + '&to=' + this.to_time
       this.url = this.overviewBaseUrl + '&to=' + this.to_time
       console.log('Change URL to ' + this.url)
     },
     updateUrlForProject () {
-      this.sprint.id = ''
-      this.sprint.name = ''
-      this.from_time = ''
+      // this.sprint.id = ''
+      // this.sprint.name = ''
+      // this.from_time = ''
       this.to_time = 'now'
       // for (var p in this.projects) {
       //   console.log(this.projects[p])
