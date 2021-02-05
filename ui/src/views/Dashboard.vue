@@ -251,11 +251,19 @@ export default {
         console.log('Change URL to ' + this.url)
       }
       if (to.path === '/project') {
-        this.url = this.projectInitUrl
+        if (this.project_id) {
+          this.url = this.projectBaseUrl + '&theme=' + this.theme + '&var-project=' + this.project.id + '&to=now'
+        } else {
+          this.url = this.projectInitUrl
+        }
         console.log('Change URL to ' + this.url)
       };
       if (to.path === '/sprint') {
-        this.url = this.sprintInitUrl
+        if (this.sprint_id) {
+          this.url = this.sprintBaseUrl + '&theme=' + this.theme + '&var-project=' + response.data.detail.project_id + '&var-sprint=' + this.sprint.id + '&var-requirement=' + this.req + '&from=' + this.from_time + '&to=' + this.to_time
+        } else {
+          this.url = this.sprintInitUrl
+        }
         console.log('Change URL to ' + this.url)
       }
     }
