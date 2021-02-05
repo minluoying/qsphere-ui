@@ -182,10 +182,8 @@ export default {
       sprintSvc.getSprint(this.sprint.id)
         .then((response) => {
           console.log(response)
-          console.log('Caputure Start Time: ' + response.data.detail.capture_history.start_time)
           this.from_time = response.data.detail.capture_history.start_time * 1000
-          console.log('From Time: ' + this.from_time)
-          if (response.data.detail.status == 'active') {
+          if (response.data.detail.status === 'active') {
             this.to_time = 'now'
           } else {
             this.to_time = response.data.detail.capture_history.end_time * 1000
