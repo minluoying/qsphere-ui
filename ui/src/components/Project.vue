@@ -16,10 +16,10 @@
         :border="true"
         style="width: 100%;">
         <el-table-column prop="name" label="Project" width="200"></el-table-column>
-        <el-table-column prop="tracker.issue.name" label="Issue Tracker" width=""></el-table-column>
-        <el-table-column prop="project.issue.key" label="Issue Project" width=""></el-table-column>
-        <el-table-column prop="tracker.case.name" label="Case Tracker" width=""></el-table-column>
-        <el-table-column prop="project.case.key" label="Case Project" width=""></el-table-column>
+        <el-table-column prop="issue_tracker.tracker_name" label="Issue Tracker" width=""></el-table-column>
+        <el-table-column prop="issue_tracker.project_name" label="Issue Project" width=""></el-table-column>
+        <el-table-column prop="case_tracker.tracker_name" label="Case Tracker" width=""></el-table-column>
+        <el-table-column prop="case_tracker.project_name" label="Case Project" width=""></el-table-column>
         <el-table-column
           label="Active"
           width="100">
@@ -87,7 +87,7 @@
         </el-form-item>
         <el-form-item label="Issue Project">
           <el-select
-            v-model="projectData.project.issue.key"
+            v-model="projectData.project.issue"
             @focus="listIssueTrackerProject()"
             filterable
             clearable
@@ -97,7 +97,7 @@
               v-for="item in issueTrackerProjects"
               :key="item.key"
               :label="item.value"
-              :value="item.key">
+              :value="item">
             </el-option>
           </el-select>
         </el-form-item>
@@ -119,7 +119,7 @@
         </el-form-item>
         <el-form-item label="Case Project">
           <el-select
-            v-model="projectData.project.case.key"
+            v-model="projectData.project.case"
             @focus="listCaseTrackerProject()"
             filterable
             clearable
@@ -129,7 +129,7 @@
               v-for="item in caseTrackerProjects"
               :key="item.key"
               :label="item.value"
-              :value="item.key">
+              :value="item">
             </el-option>
           </el-select>
         </el-form-item>
@@ -183,10 +183,8 @@ export default {
         },
         project: {
           issue: {
-            key: ''
           },
           case: {
-            key: ''
           }
         },
         status: ''

@@ -15,10 +15,10 @@ export default {
           host: trackerData.jira.host,
           account: trackerData.jira.account
         },
-        secret: trackerData.jira.password
+        token: trackerData.jira.password
       }
     }
-    return axios.post('/api/tracker', _data)
+    return axios.post('/api/trackers', _data)
   },
 
   deleteTracker (trackerId) {
@@ -26,11 +26,14 @@ export default {
   },
 
   activeTracker (trackerId, trackerStatus) {
-    if (trackerStatus === 'active') {
-      return axios.put('/api/tracker/' + trackerId + '/active')
-    } else {
-      return axios.put('/api/tracker/' + trackerId + '/disable')
-    }
+    return axios.put(`api/tracker/${trackerId}/status`, {
+      status: trackerStatus
+    })
+    // if (trackerStatus === 'active') {
+    //   return axios.put('/api/tracker/' + trackerId + '/active')
+    // } else {
+    //   return axios.put('/api/tracker/' + trackerId + '/disable')
+    // }
   },
 
   getTracker (trackerId) {
@@ -46,7 +49,7 @@ export default {
           host: trackerData.jira.host,
           account: trackerData.jira.account
         },
-        secret: trackerData.jira.password
+        token: trackerData.jira.password
       }
     }
     return axios.put('/api/tracker/' + trackerData.id, _data)

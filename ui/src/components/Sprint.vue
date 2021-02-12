@@ -129,6 +129,7 @@
                 :value="item">
               </el-option>
             </el-select>
+          </el-col>
         </el-form-item>
         <el-form-item label="Found In Version">
           <el-col :span="4">

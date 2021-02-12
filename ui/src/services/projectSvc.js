@@ -8,27 +8,52 @@ export default {
 
   addProject (projectData) {
     var _data = {
+      // {
+      //   "case_tracker": {
+      //     "project_key": "QS",
+      //     "project_value": "QSphere",
+      //     "tracker_id": "e095081f-b145-4df7-affa-0412fce2ea88"
+      //   },
+      //   "issue_tracker": {
+      //     "project_key": "QS",
+      //     "project_value": "QSphere",
+      //     "tracker_id": "e095081f-b145-4df7-affa-0412fce2ea88"
+      //   },
+      //   "name": "MyProject"
+      // }
       name: projectData.name,
-      tracker: {
-        issue: {
-          id: projectData.tracker.issue.id,
-          name: projectData.tracker.issue.name
-        },
-        case: {
-          id: projectData.tracker.case.id,
-          name: projectData.tracker.case.name
-        }
+      case_tracker: {
+        project_key: projectData.project.case.key,
+        project_value: projectData.project.case.value,
+        tracker_id: projectData.tracker.case.id
       },
-      project: {
-        issue: {
-          key: projectData.project.issue.key
-        },
-        case: {
-          key: projectData.project.case.key
-        }
+      issue_tracker: {
+        project_key: projectData.project.issue.key,
+        project_value: projectData.project.issue.value,
+        tracker_id: projectData.tracker.issue.id
       }
+
+      // name: projectData.name,
+      // tracker: {
+      //   issue: {
+      //     id: projectData.tracker.issue.id,
+      //     name: projectData.tracker.issue.name
+      //   },
+      //   case: {
+      //     id: projectData.tracker.case.id,
+      //     name: projectData.tracker.case.name
+      //   }
+      // },
+      // project: {
+      //   issue: {
+      //     key: projectData.project.issue.key
+      //   },
+      //   case: {
+      //     key: projectData.project.case.key
+      //   }
+      // }
     }
-    return axios.post('/api/project', _data)
+    return axios.post('/api/projects', _data)
   },
 
   updateProject (projectData) {
